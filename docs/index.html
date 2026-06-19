@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Phantasma</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section class="settings" aria-label="Connection settings">
+        <label>
+          Username
+          <input id="username" autocomplete="username" placeholder="alice">
+        </label>
+        <label>
+          Relay URL
+          <input id="relay-url" spellcheck="false">
+        </label>
+        <button id="start" type="button">Start</button>
+      </section>
+
+      <section class="contacts" aria-label="Contacts">
+        <label>
+          Add contact
+          <input id="contact-name" placeholder="bob">
+        </label>
+        <button id="add-contact" type="button">Add</button>
+        <label>
+          Send to
+          <select id="recipient"></select>
+        </label>
+      </section>
+
+      <section id="status" class="status" aria-live="polite">Not connected.</section>
+
+      <section id="messages" class="messages" aria-label="Messages"></section>
+
+      <form id="send-form" class="composer">
+        <input id="message" autocomplete="off" placeholder="Type a message">
+        <button type="submit">Send</button>
+      </form>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

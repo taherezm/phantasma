@@ -1,0 +1,7 @@
+/target
+**/target
+.codex/
+AGENTS.md
+.phantasma/
+*.sqlite
+*.sqlite3
