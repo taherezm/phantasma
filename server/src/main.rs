@@ -35,6 +35,7 @@ use tracing_subscriber::EnvFilter;
 mod directory;
 
 const DEFAULT_DATABASE_URL: &str = "sqlite://phantasma.sqlite";
+const DEFAULT_BIND_ADDR: &str = "127.0.0.1:3000";
 
 #[derive(Clone)]
 struct AppState {
@@ -77,7 +78,7 @@ async fn main() -> anyhow::Result<()> {
         )
         .with_state(state);
 
-    let address: SocketAddr = "127.0.0.1:3000".parse()?;
+    let address = bind_address()?;
     let listener = tokio::net::TcpListener::bind(address).await?;
 
     println!("listening on ws://{address}/ws");
@@ -96,6 +97,13 @@ async fn open_directory_database() -> anyhow::Result<SqlitePool> {
         .max_connections(5)
         .connect_with(options)
         .await?)
+}
+
+fn bind_address() -> anyhow::Result<SocketAddr> {
+    let bind_addr =
+        env::var("PHANTASMA_BIND_ADDR").unwrap_or_else(|_| DEFAULT_BIND_ADDR.to_string());
+
+    Ok(bind_addr.parse()?)
 }
 
 async fn register_public_key(

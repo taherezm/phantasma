@@ -1,0 +1,18 @@
+[Unit]
+Description=Phantasma relay server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/phantasma
+Environment=PHANTASMA_BIND_ADDR=127.0.0.1:3000
+Environment=PHANTASMA_DATABASE_URL=sqlite:///home/ubuntu/phantasma/phantasma.sqlite
+Environment=RUST_LOG=server=info
+ExecStart=/home/ubuntu/phantasma/target/release/server
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

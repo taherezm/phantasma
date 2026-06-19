@@ -92,6 +92,25 @@ const DEFAULT_RELAY_URL = "https://your-relay.example.com";
 
 The browser will use `wss://` for WebSocket delivery when the relay URL starts with `https://`.
 
+## Hosted Relay
+
+GitHub Pages can host only the static browser files. The relay needs to run on a server that supports long-running WebSocket connections.
+
+The Oracle Cloud Always Free VM path is documented here:
+
+```text
+deploy/oracle-cloud.md
+```
+
+The relay supports these environment variables:
+
+```text
+PHANTASMA_BIND_ADDR=127.0.0.1:3000
+PHANTASMA_DATABASE_URL=sqlite://phantasma.sqlite
+```
+
+For a public deployment, the recommended setup is to keep `PHANTASMA_BIND_ADDR` on `127.0.0.1:3000` and put Caddy in front of it for HTTPS and `wss://` WebSocket traffic.
+
 ## Data Stored Locally
 
 The CLI client stores local keys and contacts under:
