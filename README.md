@@ -826,6 +826,8 @@ Caddy can then handle public HTTPS and `wss://` traffic.
 
 Phantasma is an educational project and has not undergone an independent security audit.
 
+See `SECURITY.md` for the project security policy and known limitations.
+
 Areas that require further work before treating it as a production messenger include:
 
 * Public-key fingerprint verification
@@ -1021,3 +1023,9 @@ Experimental:
 * Public relay deployment
 * Identity verification workflow
 * Production security hardening
+
+---
+
+# License
+
+Phantasma is licensed under the Apache License, Version 2.0. See `LICENSE`.
